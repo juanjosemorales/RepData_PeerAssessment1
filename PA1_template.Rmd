@@ -1,4 +1,3 @@
-
 ---
 title: "Peer Assessment 1 - Reproducible Research"
 output: 
