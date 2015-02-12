@@ -12,14 +12,15 @@ ag <- aggregate(steps ~ date, data, sum)
 ```
 
 ## What is mean total number of steps taken per day?
-Histogram of the total number of steps taken each day
+
+###Histogram of the total number of steps taken each day
 
 ```r
 hist(ag$steps, xlab="Steps", main="Steps")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
-Mean:
+###Mean Steps:
 
 ```r
 mean(ag$steps)
@@ -28,7 +29,7 @@ mean(ag$steps)
 ```
 ## [1] 10766.19
 ```
-Median:
+###Median Steps:
 
 ```r
 median(ag$steps)
@@ -46,7 +47,7 @@ plot(x=ag$interval, y=ag$steps, type="l", xlab="interval", ylab="steps", main="S
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
-Max Steps in 5-Min Interval:
+###Max Steps in 5-Min Interval:
 
 ```r
 ag[which(ag$steps==max(ag$steps)), ]
@@ -58,7 +59,7 @@ ag[which(ag$steps==max(ag$steps)), ]
 ```
 
 ## Imputing missing values
-Total Number of NAs
+###Total Number of NAs
 
 ```r
 sum(is.na(data))
@@ -67,21 +68,21 @@ sum(is.na(data))
 ```
 ## [1] 2304
 ```
-Fill NAs
+Fill NAs with the median for that 5 minute interval
 
 ```r
 data$steps[is.na(data$steps)] <- with(data, ave(steps, interval, FUN = function(x) median(x, na.rm=TRUE)))[is.na(data$steps)]
 ag <- aggregate(steps ~ date, data, sum)
 ```
 
-Histogram
+###Histogram Steps
 
 ```r
 hist(ag$steps, xlab="Steps", main="Steps")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
-Mean:
+###Mean Steps:
 
 ```r
 mean(ag$steps)
@@ -90,7 +91,7 @@ mean(ag$steps)
 ```
 ## [1] 9503.869
 ```
-Median:
+###Median Steps:
 
 ```r
 median(ag$steps)
@@ -102,7 +103,7 @@ median(ag$steps)
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-Add weekend distinction to data
+###Add weekday factor distinction to data and plot
 
 ```r
 library(dplyr)
